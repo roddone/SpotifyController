@@ -1,0 +1,84 @@
+﻿<Window x:Class="SpotifyController.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SpotifyController"
+        mc:Ignorable="d"
+        Title="MainWindow"   
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Black"
+        BorderThickness="0"
+        BorderBrush="#2ebd59"
+        WindowStartupLocation="CenterScreen"
+        Topmost="True"
+        MinHeight="0"
+        Height="60"
+        MaxHeight="60"
+        Width="200"
+        MaxWidth="200"
+        MouseEnter="Window_MouseEnter"
+        MouseLeave="Window_MouseLeave" 
+        ShowInTaskbar="False">
+    <Window.Resources>
+        <Style x:Key="SpotifyButtonStyle" TargetType="Button">
+            <Style.Setters>
+                <Setter Property="Background" Value="Black"/>
+                <Setter Property="Width" Value="50"/>
+                <Setter Property="Height" Value="35"/>
+                <Setter Property="BorderBrush" Value="Black"/>
+            </Style.Setters>
+        </Style>
+        <Style x:Key="SpotifyToggleButtonStyle" TargetType="ToggleButton">
+            <Style.Setters>
+                <Setter Property="Background" Value="Black"/>
+                <Setter Property="Width" Value="50"/>
+                <Setter Property="Height" Value="35"/>
+                <Setter Property="BorderBrush" Value="Black"/>
+            </Style.Setters>
+        </Style>
+        <Style TargetType="Path" x:Key="SpotifyPathStyle">
+            <Style.Setters>
+                <Setter Property="Fill" Value="#2ebd59"/>
+                <Setter Property="Stretch" Value="Uniform"/>
+            </Style.Setters>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Border BorderBrush="#2ebd59" BorderThickness="1, 0, 1, 1" >
+            <StackPanel Orientation="Vertical">
+                <StackPanel x:Name="ButtonsList" Orientation="Horizontal" VerticalAlignment="Top" >
+                    <Button Click="Previous_Button_Click" Style="{StaticResource SpotifyButtonStyle}" Tag="PreviousTrack" Margin="0 5">
+                        <Path Style="{StaticResource SpotifyPathStyle}" Data="M 32 16 c 0 -8.836 -7.164 -16 -16 -16 c -8.837 0 -16 7.164 -16 16 c 0 8.837 7.163 16 16 16 c 8.836 0 16 -7.163 16 -16 Z M 8 16 l 8 -8 v 6 h 8 v 4 h -8 v 6 l -8 -8 Z"/>
+                    </Button>
+                    <Button Name="PlayButton" Click="PlayPause_Button_Click" Style="{StaticResource SpotifyButtonStyle}" Tag="PlayPause" Width="70">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Style="{StaticResource SpotifyPathStyle}" Data="M 0 0 l 24 16 l -24 16 Z"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Name="PauseButton" Click="PlayPause_Button_Click" Style="{StaticResource SpotifyButtonStyle}" Tag="PlayPause" Width="70" Visibility="Collapsed">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Style="{StaticResource SpotifyPathStyle}" Data="M 0 0 h 8 v 32 h -8 Z M 16 0 h 8 v 32 h -8 Z"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Click="Next_Button_Click" Style="{StaticResource SpotifyButtonStyle}" Tag="NextTrack">
+                        <Path Style="{StaticResource SpotifyPathStyle}" Data="M 0 16 c 0 8.836 7.164 16 16 16 c 8.837 0 16 -7.164 16 -16 c 0 -8.837 -7.163 -16 -16 -16 s -16 7.163 -16 16 Z M 24 16 l -8 8 v -6 h -8 v -4 h 8 v -6 l 8 8 Z"/>
+                    </Button>
+                    <StackPanel Width="30" Orientation="Vertical">
+                        <Button Click="Close_Button_Click" Style="{StaticResource SpotifyButtonStyle}" Width="30" Height="30">
+                            <Path Width="20" Height="20" Style="{StaticResource SpotifyPathStyle}" Data="M 31.708 25.708 c 0 0 0 0 0 0 l -9.708 -9.708 l 9.708 -9.708 c 0 0 0 0 0 0 c 0.105 -0.105 0.18 -0.227 0.229 -0.357 c 0.133 -0.356 0.057 -0.771 -0.229 -1.057 l -4.586 -4.586 c -0.286 -0.286 -0.702 -0.361 -1.057 -0.229 c -0.13 0.048 -0.252 0.124 -0.357 0.228 c 0 0 0 0 0 0 l -9.708 9.708 l -9.708 -9.708 c 0 0 0 0 0 0 c -0.105 -0.104 -0.227 -0.18 -0.357 -0.228 c -0.356 -0.133 -0.771 -0.057 -1.057 0.229 l -4.586 4.586 c -0.286 0.286 -0.361 0.702 -0.229 1.057 c 0.049 0.13 0.124 0.252 0.229 0.357 c 0 0 0 0 0 0 l 9.708 9.708 l -9.708 9.708 c 0 0 0 0 0 0 c -0.104 0.105 -0.18 0.227 -0.229 0.357 c -0.133 0.355 -0.057 0.771 0.229 1.057 l 4.586 4.586 c 0.286 0.286 0.702 0.361 1.057 0.229 c 0.13 -0.049 0.252 -0.124 0.357 -0.229 c 0 0 0 0 0 0 l 9.708 -9.708 l 9.708 9.708 c 0 0 0 0 0 0 c 0.105 0.105 0.227 0.18 0.357 0.229 c 0.356 0.133 0.771 0.057 1.057 -0.229 l 4.586 -4.586 c 0.286 -0.286 0.362 -0.702 0.229 -1.057 c -0.049 -0.13 -0.124 -0.252 -0.229 -0.357 Z"/>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+                <TextBlock Text="" FontSize="10" Foreground="#2ebd59" Name="SpotifyWindowTitle" Margin="5,-2,5,0" FontWeight="Bold" Padding="0">
+                    <TextBlock.ToolTip>
+                        <ToolTip Name="SpotifyWindowTitle_Tooltip" Content="" StaysOpen="True"></ToolTip>
+                    </TextBlock.ToolTip>
+                </TextBlock>
+                <ProgressBar Name="TrackProgress" Height="6"/>
+
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
