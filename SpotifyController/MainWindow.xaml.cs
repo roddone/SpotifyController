@@ -98,20 +98,23 @@ namespace SpotifyController
                 {
                     try
                     {
+                        Application.Current?.Dispatcher.BeginInvoke((ThreadStart)delegate
+                        {
+                            WpfScreen screen = WpfScreen.GetScreenFrom(this);
+                            this.Topmost = true;
+                            this.Top = 0D;
+                            var scale = scales.FirstOrDefault(sc => sc.name == screen.DeviceName)?.scale.Value;
+                            this.Left = screen.DeviceBounds.Left + ((screen.DeviceBounds.Width * scale / 2) - (this.Width * (1 / scale)));
+                            this.Height = 1D;
+                            this.WindowState = WindowState.Normal; // reset window state to prevent maximize / minimize operations
+                        });
+
                         StatusResponse status = SpotifyController.GetStatus();
 
                         if (status?.Track != null)
                         {
                             Application.Current?.Dispatcher.BeginInvoke((ThreadStart)delegate
                             {
-                                WpfScreen screen = WpfScreen.GetScreenFrom(this);
-                                this.Topmost = true;
-                                this.Top = 0D;
-                                var scale = scales.FirstOrDefault(sc => sc.name == screen.DeviceName)?.scale.Value;
-                                this.Left = screen.DeviceBounds.Left + ( (screen.DeviceBounds.Width * scale / 2) - (this.Width * (1/scale))) ;
-                                this.Height = 1D;
-                                this.WindowState = WindowState.Normal; // reset window state to prevent maximize / minimize operations
-
                                 string playingStatus = status.Playing ? string.Empty : PAUSED;
                                 this.PlayButton.Visibility = status.Playing ? Visibility.Collapsed : Visibility.Visible;
                                 this.PauseButton.Visibility = status.Playing ? Visibility.Visible : Visibility.Collapsed;
