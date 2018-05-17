@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpotifyController"
         mc:Ignorable="d"
-        Title="MainWindow"   
+        Title="Spotify Local Controller"   
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Black"
