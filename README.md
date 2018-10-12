@@ -1,3 +1,5 @@
+*This project is **dead** since Spotify removed its unofficial local API which allows to control SPotify application.*
+
 # Spotify Local Controller
 
 This software allows you to control a local Spotify Instance
